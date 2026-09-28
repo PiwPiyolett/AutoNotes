@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AutoNotes</title>
+    <!--
+      Terapkan tema tersimpan SEBELUM React memuat, supaya tidak ada kedipan
+      tema salah saat pertama membuka. Skin (default/clay) dan appearance
+      (light/dark/system) disimpan terpisah di localStorage.
+    -->
+    <script>
+      (function () {
+        try {
+          var skin = localStorage.getItem("ui-skin");
+          if (skin && skin !== "default") {
+            document.documentElement.setAttribute("data-ui-theme", skin);
+          }
+          var appearance = localStorage.getItem("ui-appearance");
+          if (appearance === "light" || appearance === "dark") {
+            document.documentElement.setAttribute("data-theme", appearance);
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

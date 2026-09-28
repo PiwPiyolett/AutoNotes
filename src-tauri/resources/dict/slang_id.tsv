@@ -1,0 +1,228 @@
+# Singkatan & bahasa sehari-hari — BISA DIMATIKAN pengguna.
+#
+# Bedanya dengan typo_id.tsv: isi di sini mungkin memang DISENGAJA.
+# Orang yang mencatat sambil buru-buru sering sengaja menulis "yg" dan
+# tidak mau diganggu. Karena itu lapisan ini punya sakelarnya sendiri.
+#
+# Format: singkatan<TAB>bentuk lengkap
+
+yg	yang
+dgn	dengan
+dg	dengan
+tdk	tidak
+tdak	tidak
+gk	enggak
+gak	enggak
+ga	enggak
+ngga	enggak
+nggak	enggak
+engga	enggak
+bgt	banget
+bngt	banget
+udh	sudah
+udah	sudah
+sdh	sudah
+blm	belum
+blom	belum
+lom	belum
+sy	saya
+sya	saya
+kmrn	kemarin
+kemaren	kemarin
+skrg	sekarang
+skrng	sekarang
+jg	juga
+aja	saja
+klo	kalau
+kalo	kalau
+klu	kalau
+gmn	gimana
+gimana	bagaimana
+knp	kenapa
+# "spy" DIHAPUS: kata Inggris sah (mata-mata), 17.251 di korpus EN.
+dlm	dalam
+utk	untuk
+krn	karena
+karna	karena
+org	orang
+tp	tapi
+tpi	tapi
+sm	sama
+hrs	harus
+bs	bisa
+dpt	dapat
+jd	jadi
+msh	masih
+byk	banyak
+bnyk	banyak
+sdkt	sedikit
+dmn	di mana
+sblm	sebelum
+stlh	setelah
+ssdh	sesudah
+thd	terhadap
+dll	dan lain-lain
+dsb	dan sebagainya
+dst	dan seterusnya
+tsb	tersebut
+yth	yang terhormat
+ttg	tentang
+bln	bulan
+thn	tahun
+tgl	tanggal
+jgn	jangan
+blh	boleh
+hrg	harga
+jml	jumlah
+wkt	waktu
+tmn	teman
+sblh	sebelah
+sgt	sangat
+cmn	cuma
+emg	memang
+emang	memang
+trs	terus
+trus	terus
+lg	lagi
+lgi	lagi
+blg	bilang
+bkn	bukan
+gpp	tidak apa-apa
+gapapa	tidak apa-apa
+gakpapa	tidak apa-apa
+kyk	kayak
+kek	kayak
+bgmn	bagaimana
+sbg	sebagai
+mnrt	menurut
+sblmnya	sebelumnya
+pd	pada
+tmpt	tempat
+pnting	penting
+sbnrnya	sebenarnya
+sbenernya	sebenarnya
+bener	benar
+bnr	benar
+bneran	benaran
+skrng	sekarang
+gitu	begitu
+gini	begini
+udahan	sudahan
+makasih	terima kasih
+mksh	terima kasih
+mkasih	terima kasih
+tks	terima kasih
+brgkt	berangkat
+brngkt	berangkat
+lgsg	langsung
+lgsung	langsung
+pke	pakai
+pake	pakai
+liat	lihat
+ngeliat	melihat
+dpn	depan
+blkg	belakang
+sm2	sama-sama
+gmna	gimana
+napa	kenapa
+ntar	nanti
+ntr	nanti
+bntr	sebentar
+sbntr	sebentar
+skalian	sekalian
+skli	sekali
+bbrp	beberapa
+sbagian	sebagian
+msg2	masing-masing
+# "dr" DIHAPUS: bentrok dengan gelar "dr." (dokter) dan "Dr." Inggris.
+kpd	kepada
+
+# --- tambahan dari rujukan kamus-alay (nasalsabila), dikurasi ---
+# Singkatan yang MUNGKIN disengaja — ikut sakelar slang.
+nie	ini
+dng	dengan
+mrk	mereka
+kmu	kamu
+adl	adalah
+sja	saja
+hny	hanya
+smw	semua
+skr	sekarang
+skg	sekarang
+gmana	bagaimana
+jdii	jadi
+cuman	cuma
+# "gt" DIHAPUS: bentrok dengan entitas HTML &gt; dan operator kode.
+gtu	gitu
+
+# ============ Perluasan singkatan (batch 2) ============
+# Semua sudah diverifikasi: bukan kata sah ID/EN, tak bentrok entri lain.
+
+# --- negasi "ga+X" (sangat umum di chat) ---
+gamau	tidak mau
+gabisa	tidak bisa
+gatau	tidak tahu
+gaada	tidak ada
+gaboleh	tidak boleh
+gajadi	tidak jadi
+gapunya	tidak punya
+gapenting	tidak penting
+gaenak	tidak enak
+gausah	tidak usah
+gapernah	tidak pernah
+gangerti	tidak mengerti
+gatel	gatal
+
+# --- waktu ---
+pgi	pagi
+sre	sore
+bsk	besok
+hri	hari
+kmrin	kemarin
+nnti	nanti
+
+# --- verba yang dipendekkan ---
+dgr	dengar
+tggu	tunggu
+cba	coba
+krg	kurang
+msk	masuk
+klr	keluar
+krj	kerja
+krja	kerja
+plg	pulang
+prgi	pergi
+mkn	makan
+mnm	minum
+bca	baca
+tls	tulis
+dgrin	dengarkan
+liatin	lihatkan
+
+# --- kata tanya ---
+kpn	kapan
+brp	berapa
+dmna	di mana
+kmna	ke mana
+knpa	kenapa
+
+# --- penghubung & lainnya ---
+yaudah	ya sudah
+yaudh	ya sudah
+yadah	ya sudah
+krena	karena
+makasi	terima kasih
+mksih	terima kasih
+stelah	setelah
+sesudh	sesudah
+dsni	di sini
+dsna	di sana
+ksni	ke sini
+ksna	ke sana
+aq	aku
+
+# --- reduplikasi umum ---
+bener2	benar-benar
+jgn2	jangan-jangan
+lg2	lagi-lagi
+cuma2	cuma-cuma

@@ -1,0 +1,228 @@
+/*
+ * Tema Holografik "Prisma" — iridescent, gradien pelangi, permukaan kaca.
+ *
+ * Berbeda dari Clay, gaya ini **inheren gelap**: latar hampir hitam
+ * (#050511) supaya kilau film tipis dan gradien neon menonjol. Karena itu
+ * tema ini **berkomitmen ke gelap** — palet didefinisikan tanpa penjaga
+ * light/dark, jadi setelan mode-warna tidak mengubahnya (holografik terang
+ * tidak masuk akal). Ini pengecualian "satu-tampilan yang disengaja".
+ *
+ * Keterbacaan dijaga: teks putih di latar nyaris hitam berkontras tinggi,
+ * kartu memakai kaca (backdrop-blur) dengan lapisan putih tipis, dan warna
+ * neon hanya untuk aksen/tepi — bukan untuk teks isi.
+ */
+
+:root[data-ui-theme="holo"] {
+  --holo-deep: #050511;
+  --holo-lighter: #0a0a1a;
+  --holo-cyan: #00ffff;
+  --holo-magenta: #ff00cc;
+  --holo-blue: #3333ff;
+  --holo-grad: linear-gradient(135deg, #ff00cc, #3333ff, #00ffff);
+  --holo-grad-full: linear-gradient(115deg, #ff00cc, #3333ff, #00ffff, #33ff33, #ffff00, #ff00cc);
+
+  /* --- token semantik app --- */
+  --bg: var(--holo-deep);
+  --bg-elevated: var(--holo-lighter);
+  --bg-hover: rgba(255, 255, 255, 0.06);
+  --bg-active: rgba(255, 255, 255, 0.1);
+  --bg-selected: rgba(0, 255, 255, 0.08);
+
+  --fg: #ffffff;
+  --fg-muted: #94a3b8;
+  --fg-subtle: #64748b;
+  --fg-faint: #475569;
+  --fg-inverse: #050511;
+
+  --border: rgba(255, 255, 255, 0.1);
+  --border-strong: rgba(255, 255, 255, 0.3);
+
+  --primary: #22d3ee;          /* cyan sedikit diredam agar teks tetap enak */
+  --primary-hover: #67e8f9;
+  --primary-soft: rgba(0, 255, 255, 0.12);
+  --on-primary: #04121a;
+
+  --accent: #ff2fd0;
+  --accent-hover: #ff6fe0;
+  --on-accent: #1a0316;
+
+  --success: #33ff99;
+  --warning: #ffd84d;
+  --danger: #ff5c7a;
+
+  --ring: #00ffff;
+
+  --typo-underline: #ff5c7a;
+  --typo-underline-2: #ffcf5c;
+  --typo-applied-bg: rgba(0, 255, 255, 0.16);
+
+  --font-ui: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --radius-sm: 6px;
+  --radius: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+
+  /* Bayangan ringan + sedikit halo, bukan gelap berat. */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.6);
+}
+
+/* ===================== KOMPONEN ===================== */
+
+/* Tepi kaca halus, bukan garis solid. */
+:root[data-ui-theme="holo"] .sidebar { border-right: 1px solid var(--border); background: rgba(10, 10, 26, 0.6); backdrop-filter: blur(12px); }
+:root[data-ui-theme="holo"] .side-panel { border-left: 1px solid var(--border); background: rgba(10, 10, 26, 0.6); backdrop-filter: blur(12px); }
+:root[data-ui-theme="holo"] .statusbar { border-top: 1px solid var(--border); background: rgba(5, 5, 17, 0.7); backdrop-filter: blur(10px); }
+
+/* Merek: berlian gradien berputar + nama ber-gradien mengalir. */
+:root[data-ui-theme="holo"] .brand-mark {
+  background: var(--holo-grad);
+  border-radius: 6px;
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.6);
+}
+:root[data-ui-theme="holo"] .brand-mark::after { display: none; }
+:root[data-ui-theme="holo"] .brand-name {
+  background: var(--holo-grad);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: holoFlow 5s linear infinite;
+}
+
+/* Tombol utama: pita pelangi bergerak, teks gelap tajam (khas Prisma). */
+:root[data-ui-theme="holo"] .btn-primary {
+  background: var(--holo-grad-full);
+  background-size: 200% auto;
+  color: #000;
+  font-weight: 700;
+  border: 0;
+  animation: holoFlow 4s linear infinite;
+}
+:root[data-ui-theme="holo"] .btn-primary:hover { filter: brightness(1.12); color: #000; }
+:root[data-ui-theme="holo"] .btn-primary:active { transform: scale(0.98); }
+
+/* Tombol aksen: gradien magenta→biru. */
+:root[data-ui-theme="holo"] .btn-accent {
+  background: linear-gradient(120deg, #ff00cc, #7a2bff);
+  color: #fff;
+  border: 0;
+  box-shadow: 0 0 18px rgba(255, 0, 204, 0.35);
+}
+:root[data-ui-theme="holo"] .btn-accent:hover { filter: brightness(1.12); color: #fff; }
+
+/* Tombol hantu/ikon: kaca dengan tepi menyala saat hover. */
+:root[data-ui-theme="holo"] .btn-icon:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.12);
+}
+:root[data-ui-theme="holo"] .btn-icon.active { color: var(--holo-cyan); background: rgba(0, 255, 255, 0.08); }
+
+/* Input: kaca gelap, tepi gradien saat fokus. */
+:root[data-ui-theme="holo"] .input {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--border);
+  color: #fff;
+}
+:root[data-ui-theme="holo"] .input:focus {
+  border-color: transparent;
+  background-image: linear-gradient(var(--holo-deep), var(--holo-deep)), var(--holo-grad);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+}
+
+/* Kartu koreksi: kaca dengan pantulan diagonal & tepi warna sumber. */
+:root[data-ui-theme="holo"] .cc-card {
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--border);
+  border-radius: var(--radius-md);
+  backdrop-filter: blur(8px);
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+:root[data-ui-theme="holo"] .cc-card:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.28);
+}
+:root[data-ui-theme="holo"] .cc-card.source-typo { border-left-color: #ffd84d; }
+:root[data-ui-theme="holo"] .cc-card.source-dictionary { border-left-color: var(--holo-cyan); }
+:root[data-ui-theme="holo"] .cc-card.source-context { border-left-color: var(--holo-magenta); }
+:root[data-ui-theme="holo"] .cc-to {
+  background: var(--holo-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+}
+
+/* Baris catatan: naik + tepi menyala saat hover; terpilih = cyan. */
+:root[data-ui-theme="holo"] .note-row { border: 1px solid transparent; transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease; }
+:root[data-ui-theme="holo"] .note-row:hover { background: rgba(255, 255, 255, 0.05); transform: translateY(-1px); border-color: var(--border); }
+:root[data-ui-theme="holo"] .note-row.active { background: rgba(0, 255, 255, 0.07); border-color: rgba(0, 255, 255, 0.25); }
+:root[data-ui-theme="holo"] .note-row.active .note-title { color: var(--holo-cyan); }
+
+/* Chip: kaca dengan teks warna neon. */
+:root[data-ui-theme="holo"] .chip {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border);
+}
+:root[data-ui-theme="holo"] .chip-teal { background: rgba(0, 255, 255, 0.1); color: var(--holo-cyan); border-color: rgba(0, 255, 255, 0.2); }
+:root[data-ui-theme="holo"] .chip-orange { background: rgba(255, 216, 77, 0.12); color: #ffd84d; }
+:root[data-ui-theme="holo"] .chip-context { background: rgba(255, 0, 204, 0.14); color: #ff6fe0; }
+
+/* Toggle: rel kaca, nyala = gradien. */
+:root[data-ui-theme="holo"] .toggle-switch { background: rgba(255, 255, 255, 0.1); }
+:root[data-ui-theme="holo"] .toggle-switch.on { background: var(--holo-grad); box-shadow: 0 0 14px rgba(0, 255, 255, 0.35); }
+
+/* Kartu tingkat & dialog: kaca. */
+:root[data-ui-theme="holo"] .level-card {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: var(--border);
+}
+:root[data-ui-theme="holo"] .level-card:hover { transform: translateY(-2px); border-color: rgba(255, 255, 255, 0.28); background: rgba(255, 255, 255, 0.06); }
+:root[data-ui-theme="holo"] .level-card.active { border-color: transparent; background: rgba(0, 255, 255, 0.08); box-shadow: 0 0 0 1px rgba(0, 255, 255, 0.4), 0 0 22px rgba(0, 255, 255, 0.15); }
+:root[data-ui-theme="holo"] .level-card.active .level-name { color: var(--holo-cyan); }
+
+:root[data-ui-theme="holo"] .dialog {
+  background: rgba(10, 10, 26, 0.85);
+  border: 1px solid var(--border-strong);
+  backdrop-filter: blur(24px);
+}
+:root[data-ui-theme="holo"] .toggle,
+:root[data-ui-theme="holo"] .dict-status {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: var(--border);
+}
+
+/* Editor: latar dalam nyaris hitam; metrik teks tak diubah. */
+:root[data-ui-theme="holo"] .editor-canvas,
+:root[data-ui-theme="holo"] .editor-toolbar,
+:root[data-ui-theme="holo"] .editor-footer { background: var(--holo-deep); }
+:root[data-ui-theme="holo"] .editor-textarea { caret-color: var(--holo-cyan); }
+
+/* Judul gradien pada merek panel & dialog. */
+:root[data-ui-theme="holo"] .empty-panel-mark { background: rgba(0, 255, 255, 0.1); color: var(--holo-cyan); box-shadow: 0 0 20px rgba(0, 255, 255, 0.2); }
+
+/* Scrollbar tipis gelap. */
+:root[data-ui-theme="holo"] .scroll-y::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border: 3px solid transparent;
+  background-clip: padding-box;
+}
+
+@keyframes holoFlow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* Hormati preferensi kurangi-gerak: bekukan aliran gradien. */
+@media (prefers-reduced-motion: reduce) {
+  :root[data-ui-theme="holo"] .brand-name,
+  :root[data-ui-theme="holo"] .btn-primary { animation: none; }
+}

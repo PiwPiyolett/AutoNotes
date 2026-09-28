@@ -1,0 +1,211 @@
+/*
+ * Token desain global — palet, tipografi, jarak, radius, bayangan, gerakan.
+ *
+ * Dibagi jadi dua blok :root supaya sakelar tema di preferensi OS (bukan
+ * hanya pilihan manual pengguna) langsung diikuti. Semua warna semantik
+ * dipetakan dua kali; komponen tidak boleh menyebut nilai hex langsung —
+ * hanya menyebut var(--…) supaya satu perubahan di sini merambat ke mana-mana.
+ *
+ * Palet dasar: teal (fokus/aksi tenang) + orange (aksi menonjol, seperti
+ * "Perbaiki semua"). Dipilih karena WCAG-safe di dua tema dan tidak "sok
+ * cantik" untuk aplikasi kerja.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Nunito:wght@400;600;700;800;900&display=swap');
+
+:root {
+  color-scheme: light dark;
+
+  /* --- palet mentah (jangan dipakai langsung dari komponen) ------- */
+  --teal-50:  #f0fdfa;
+  --teal-100: #ccfbf1;
+  --teal-200: #99f6e4;
+  --teal-500: #14b8a6;
+  --teal-600: #0d9488;
+  --teal-700: #0f766e;
+  --teal-900: #134e4a;
+
+  --orange-500: #f97316;
+  --orange-600: #ea580c;
+
+  --slate-50:  #f8fafc;
+  --slate-100: #f1f5f9;
+  --slate-200: #e2e8f0;
+  --slate-300: #cbd5e1;
+  --slate-400: #94a3b8;
+  --slate-500: #64748b;
+  --slate-600: #475569;
+  --slate-700: #334155;
+  --slate-800: #1e293b;
+  --slate-900: #0f172a;
+  --slate-950: #020617;
+
+  --red-500: #ef4444;
+  --red-600: #dc2626;
+  --amber-500: #f59e0b;
+  --emerald-500: #10b981;
+
+  /* --- semantik (yang dipakai komponen) --------------------------- */
+  --bg:          #ffffff;
+  --bg-elevated: var(--slate-50);
+  --bg-hover:    var(--slate-100);
+  --bg-active:   var(--slate-200);
+  --bg-selected: var(--teal-50);
+
+  --fg:          var(--slate-900);
+  --fg-muted:    var(--slate-600);
+  --fg-subtle:   var(--slate-500);
+  --fg-faint:    var(--slate-400);
+  --fg-inverse:  #ffffff;
+
+  --border:        var(--slate-200);
+  --border-strong: var(--slate-300);
+
+  --primary:        var(--teal-600);
+  --primary-hover:  var(--teal-700);
+  --primary-soft:   var(--teal-100);
+  --on-primary:     #ffffff;
+
+  --accent:       var(--orange-600);
+  --accent-hover: #c2410c;
+  --on-accent:    #ffffff;
+
+  --danger:       var(--red-600);
+  --danger-hover: #b91c1c;
+
+  --success: var(--emerald-500);
+  --warning: var(--amber-500);
+
+  --ring: var(--teal-600);
+
+  /* --- indikator koreksi typo -------------------------------------- */
+  --typo-underline:   var(--red-500);     /* keyakinan tinggi, saran mantap */
+  --typo-underline-2: var(--amber-500);   /* keyakinan sedang */
+  --typo-applied-bg:  rgba(20, 184, 166, 0.12); /* kilas hijau saat diterapkan */
+
+  /* --- tipografi -------------------------------------------------- */
+  --font-ui:   'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Cascadia Code', 'Consolas', ui-monospace, monospace;
+
+  --text-xs:  0.75rem;
+  --text-sm:  0.8125rem;
+  --text-md:  0.875rem;   /* baku UI */
+  --text-base: 1rem;
+  --text-lg:  1.125rem;
+  --text-xl:  1.375rem;
+  --text-2xl: 1.75rem;
+
+  --leading-tight:  1.25;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.65;
+
+  /* --- jarak & ukuran (density 6/10 — standar) -------------------- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  --radius-sm: 4px;
+  --radius:    6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05);
+  --shadow:    0 1px 3px rgba(15, 23, 42, 0.08), 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.08), 0 2px 4px -2px rgba(15, 23, 42, 0.04);
+  --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.1), 0 4px 6px -4px rgba(15, 23, 42, 0.06);
+
+  --sidebar-w:  280px;
+  --panel-w:    280px;
+  --statusbar-h: 28px;
+
+  /* --- gerakan (motion 3/10 — halus, tidak menari) ---------------- */
+  --motion-fast:   120ms;
+  --motion:        180ms;
+  --motion-slow:   240ms;
+  --ease-out:      cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out:   cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+:root:not([data-theme="light"]) {
+  @media (prefers-color-scheme: dark) {
+    --bg:          #0b1220;
+    --bg-elevated: #101828;
+    --bg-hover:    #172033;
+    --bg-active:   #1e293b;
+    --bg-selected: #0f2b2a;
+
+    --fg:          #e2e8f0;
+    --fg-muted:    #94a3b8;
+    --fg-subtle:   #64748b;
+    --fg-faint:    #475569;
+    --fg-inverse:  #0b1220;
+
+    --border:        #1e293b;
+    --border-strong: #334155;
+
+    --primary:       var(--teal-500);
+    --primary-hover: #2dd4bf;
+    --primary-soft:  rgba(20, 184, 166, 0.15);
+    --on-primary:    #0b1220;
+
+    --accent:       var(--orange-500);
+    --accent-hover: #fb923c;
+
+    --typo-underline:   #f87171;
+    --typo-underline-2: #fbbf24;
+    --typo-applied-bg:  rgba(45, 212, 191, 0.18);
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow:    0 1px 3px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.6), 0 4px 6px -4px rgba(0, 0, 0, 0.4);
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg:          #0b1220;
+  --bg-elevated: #101828;
+  --bg-hover:    #172033;
+  --bg-active:   #1e293b;
+  --bg-selected: #0f2b2a;
+
+  --fg:          #e2e8f0;
+  --fg-muted:    #94a3b8;
+  --fg-subtle:   #64748b;
+  --fg-faint:    #475569;
+  --fg-inverse:  #0b1220;
+
+  --border:        #1e293b;
+  --border-strong: #334155;
+
+  --primary:       var(--teal-500);
+  --primary-hover: #2dd4bf;
+  --primary-soft:  rgba(20, 184, 166, 0.15);
+  --on-primary:    #0b1220;
+
+  --accent:       var(--orange-500);
+  --accent-hover: #fb923c;
+
+  --typo-underline:   #f87171;
+  --typo-underline-2: #fbbf24;
+  --typo-applied-bg:  rgba(45, 212, 191, 0.18);
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow:    0 1px 3px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.6), 0 4px 6px -4px rgba(0, 0, 0, 0.4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-fast: 0.01ms;
+    --motion:      0.01ms;
+    --motion-slow: 0.01ms;
+  }
+}

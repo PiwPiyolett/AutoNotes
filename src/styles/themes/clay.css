@@ -1,0 +1,336 @@
+/*
+ * Tema Claymorphism — "materialisasi & pelembutan dunia digital".
+ *
+ * Di-scope penuh di bawah :root[data-ui-theme="clay"] supaya tema lain tidak
+ * tersentuh. Dua lapisan:
+ *   1. Override token warna (terang + gelap) — komponen dapat palet clay gratis.
+ *   2. Perlakuan komponen khas clay: bayangan ganda (cembung/cekung), sudut
+ *      super-bulat, tombol kapsul, input "terpahat", efek pencet.
+ *
+ * Jiwa clay ada di box-shadow: satu bayangan gelap besar (occlusion) + satu
+ * terang (pantulan cahaya) di luar, plus inset terang di atas & gelap di bawah
+ * untuk ilusi "menggembung".
+ */
+
+/* ===================== PALET TERANG ===================== */
+:root[data-ui-theme="clay"] {
+  --clay-bg: #e0e5ec;
+  --clay-dark: 163, 177, 198;   /* rgb bayangan gelap */
+  --clay-light: 255, 255, 255;  /* rgb bayangan terang */
+
+  --clay-pink: #ffafcc;
+  --clay-blue: #a2d2ff;
+  --clay-purple: #cdb4db;
+  --clay-green: #b7e4c7;
+
+  /* Bayangan clay — dipakai ulang oleh komponen. */
+  --clay-convex:
+    6px 6px 12px rgba(var(--clay-dark), 0.55),
+    -6px -6px 12px rgba(var(--clay-light), 0.7),
+    inset 2px 2px 4px rgba(var(--clay-light), 0.5),
+    inset -3px -3px 6px rgba(var(--clay-dark), 0.18);
+  --clay-convex-lg:
+    10px 10px 20px rgba(var(--clay-dark), 0.55),
+    -10px -10px 20px rgba(var(--clay-light), 0.7),
+    inset 3px 3px 6px rgba(var(--clay-light), 0.55),
+    inset -4px -4px 8px rgba(var(--clay-dark), 0.18);
+  --clay-concave:
+    inset 5px 5px 10px rgba(var(--clay-dark), 0.6),
+    inset -5px -5px 10px rgba(var(--clay-light), 0.75);
+  --clay-press:
+    inset 4px 4px 8px rgba(var(--clay-dark), 0.5),
+    inset -4px -4px 8px rgba(var(--clay-light), 0.7);
+
+  /* --- token semantik app dipetakan ke clay --- */
+  --bg: var(--clay-bg);
+  --bg-elevated: var(--clay-bg);
+  --bg-hover: #d6dce6;
+  --bg-active: #ccd3df;
+  --bg-selected: #d3e3f5;
+
+  --fg: #4a5568;
+  --fg-muted: #64748b;
+  --fg-subtle: #8a97ab;
+  --fg-faint: #a9b4c6;
+  --fg-inverse: #ffffff;
+
+  /* Batas nyaris tak terlihat — kedalaman datang dari bayangan, bukan garis. */
+  --border: rgba(163, 177, 198, 0.25);
+  --border-strong: rgba(163, 177, 198, 0.4);
+
+  --primary: #5b7fb9;          /* biru terbaca untuk teks/aktif */
+  --primary-hover: #4d6ea3;
+  --primary-soft: rgba(162, 210, 255, 0.4);
+  --on-primary: #33507d;
+
+  --accent: #d98aad;           /* pink terbaca */
+  --accent-hover: #c9779c;
+  --on-accent: #8a4860;
+
+  --ring: #7fa8dd;
+
+  --typo-underline: #ef6b8a;
+  --typo-underline-2: #e0a34a;
+  --typo-applied-bg: rgba(183, 228, 199, 0.5);
+
+  /* Font clay: Nunito, bulat & hangat. */
+  --font-ui: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* Sudut jauh lebih bulat. */
+  --radius-sm: 10px;
+  --radius: 14px;
+  --radius-md: 18px;
+  --radius-lg: 24px;
+
+  --shadow-sm: 3px 3px 6px rgba(var(--clay-dark), 0.3);
+  --shadow: var(--clay-convex);
+  --shadow-md: var(--clay-convex);
+  --shadow-lg: var(--clay-convex-lg);
+}
+
+/* ===================== PALET GELAP ===================== */
+:root[data-ui-theme="clay"][data-theme="dark"],
+:root[data-ui-theme="clay"]:not([data-theme="light"]) {
+  @media (prefers-color-scheme: dark) {
+    --clay-bg: #2a2f3a;
+    --clay-dark: 18, 21, 27;     /* occlusion lebih gelap */
+    --clay-light: 58, 65, 79;    /* ambient lebih terang dari bg */
+
+    --bg: var(--clay-bg);
+    --bg-elevated: var(--clay-bg);
+    --bg-hover: #313742;
+    --bg-active: #363d4a;
+    --bg-selected: #2f3a4b;
+
+    --fg: #d7dde8;
+    --fg-muted: #9aa5b8;
+    --fg-subtle: #74808f;
+    --fg-faint: #5a6472;
+    --fg-inverse: #1a1d24;
+
+    --border: rgba(0, 0, 0, 0.25);
+    --border-strong: rgba(0, 0, 0, 0.4);
+
+    --primary: #8fb4e8;
+    --primary-hover: #a6c5f0;
+    --primary-soft: rgba(143, 180, 232, 0.2);
+    --on-primary: #1a2436;
+
+    --accent: #e79cbb;
+    --accent-hover: #efb0c9;
+    --on-accent: #3a1f29;
+
+    --ring: #8fb4e8;
+
+    --typo-underline: #f38aa3;
+    --typo-underline-2: #e9bd76;
+    --typo-applied-bg: rgba(143, 200, 165, 0.22);
+  }
+}
+
+/* Salinan eksplisit untuk toggle gelap manual (mengalahkan OS terang). */
+:root[data-ui-theme="clay"][data-theme="dark"] {
+  --clay-bg: #2a2f3a;
+  --clay-dark: 18, 21, 27;
+  --clay-light: 58, 65, 79;
+
+  --bg: var(--clay-bg);
+  --bg-elevated: var(--clay-bg);
+  --bg-hover: #313742;
+  --bg-active: #363d4a;
+  --bg-selected: #2f3a4b;
+
+  --fg: #d7dde8;
+  --fg-muted: #9aa5b8;
+  --fg-subtle: #74808f;
+  --fg-faint: #5a6472;
+  --fg-inverse: #1a1d24;
+
+  --border: rgba(0, 0, 0, 0.25);
+  --border-strong: rgba(0, 0, 0, 0.4);
+
+  --primary: #8fb4e8;
+  --primary-hover: #a6c5f0;
+  --primary-soft: rgba(143, 180, 232, 0.2);
+  --on-primary: #1a2436;
+
+  --accent: #e79cbb;
+  --accent-hover: #efb0c9;
+  --on-accent: #3a1f29;
+
+  --ring: #8fb4e8;
+
+  --typo-underline: #f38aa3;
+  --typo-underline-2: #e9bd76;
+  --typo-applied-bg: rgba(143, 200, 165, 0.22);
+}
+
+/* ===================== PERLAKUAN KOMPONEN ===================== */
+
+/* Hilangkan garis pemisah keras — clay memisah lewat kedalaman. */
+:root[data-ui-theme="clay"] .sidebar { border-right: 0; }
+:root[data-ui-theme="clay"] .side-panel { border-left: 0; }
+:root[data-ui-theme="clay"] .statusbar { border-top: 0; }
+:root[data-ui-theme="clay"] .editor-toolbar,
+:root[data-ui-theme="clay"] .editor-footer,
+:root[data-ui-theme="clay"] .panel-header,
+:root[data-ui-theme="clay"] .sidebar-header { border-color: var(--border); }
+:root[data-ui-theme="clay"] .divider { background: var(--border); }
+
+/* Tombol kapsul dengan bayangan clay + efek pencet "squish". */
+:root[data-ui-theme="clay"] .btn,
+:root[data-ui-theme="clay"] .btn-icon {
+  border-radius: 999px;
+  transition:
+    transform 0.18s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    box-shadow 0.18s ease,
+    background 0.15s ease;
+}
+:root[data-ui-theme="clay"] .btn-primary,
+:root[data-ui-theme="clay"] .btn-accent {
+  box-shadow: var(--clay-convex);
+  font-weight: 800;
+}
+:root[data-ui-theme="clay"] .btn-primary { background: var(--clay-blue); color: #33507d; }
+:root[data-ui-theme="clay"] .btn-primary:hover { background: #b3dbff; color: #33507d; transform: translateY(-2px); }
+:root[data-ui-theme="clay"] .btn-accent { background: var(--clay-pink); color: #8a4860; }
+:root[data-ui-theme="clay"] .btn-accent:hover { background: #ffc0d6; color: #8a4860; transform: translateY(-2px); }
+:root[data-ui-theme="clay"] .btn-primary:active,
+:root[data-ui-theme="clay"] .btn-accent:active {
+  transform: scale(0.95);
+  box-shadow: var(--clay-press);
+}
+
+/* Tombol ikon jadi "kancing" clay saat hover/aktif. */
+:root[data-ui-theme="clay"] .btn-icon:hover {
+  background: var(--clay-bg);
+  box-shadow: var(--clay-convex);
+}
+:root[data-ui-theme="clay"] .btn-icon.active,
+:root[data-ui-theme="clay"] .btn-icon:active {
+  background: var(--clay-bg);
+  box-shadow: var(--clay-press);
+}
+
+/* Input & kotak cari: "terpahat" ke dalam permukaan (cekung). */
+:root[data-ui-theme="clay"] .input {
+  border: 0;
+  border-radius: var(--radius-md);
+  background: var(--clay-bg);
+  box-shadow: var(--clay-concave);
+}
+:root[data-ui-theme="clay"] .input:hover { border: 0; }
+:root[data-ui-theme="clay"] .input:focus {
+  border: 0;
+  box-shadow:
+    inset 7px 7px 12px rgba(var(--clay-dark), 0.75),
+    inset -7px -7px 12px rgba(var(--clay-light), 0.85);
+}
+
+/* Kartu koreksi = gumpalan clay cembung. */
+:root[data-ui-theme="clay"] .cc-card {
+  border: 0;
+  border-left: 0;
+  border-radius: var(--radius-md);
+  box-shadow: var(--clay-convex);
+  background: var(--clay-bg);
+}
+:root[data-ui-theme="clay"] .cc-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--clay-convex-lg);
+}
+/* Pita sumber diganti titik warna kiri-atas (clay tak pakai garis tepi). */
+:root[data-ui-theme="clay"] .cc-card.source-typo { box-shadow: var(--clay-convex), inset 4px 0 0 -1px var(--clay-pink); }
+:root[data-ui-theme="clay"] .cc-card.source-dictionary { box-shadow: var(--clay-convex), inset 4px 0 0 -1px var(--clay-blue); }
+:root[data-ui-theme="clay"] .cc-card.source-context { box-shadow: var(--clay-convex), inset 4px 0 0 -1px var(--clay-purple); }
+:root[data-ui-theme="clay"] .cc-to { background: var(--primary-soft); border-radius: 8px; }
+
+/* Baris catatan: melayang saat hover, "tenggelam" saat terpilih. */
+:root[data-ui-theme="clay"] .note-row {
+  border-radius: var(--radius);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.15s ease;
+}
+:root[data-ui-theme="clay"] .note-row:hover {
+  background: var(--clay-bg);
+  box-shadow: var(--clay-convex);
+  transform: translateY(-2px);
+}
+:root[data-ui-theme="clay"] .note-row.active {
+  background: var(--clay-bg);
+  box-shadow: var(--clay-concave);
+  transform: none;
+}
+
+/* Chip = badge clay kecil. */
+:root[data-ui-theme="clay"] .chip {
+  border-radius: 999px;
+  font-weight: 700;
+  box-shadow:
+    2px 2px 4px rgba(var(--clay-dark), 0.35),
+    inset 1px 1px 2px rgba(var(--clay-light), 0.5);
+}
+
+/* Toggle: rel cekung + kenop cembung (sangat clay secara alami). */
+:root[data-ui-theme="clay"] .toggle-switch {
+  background: var(--clay-bg);
+  box-shadow: var(--clay-concave);
+}
+:root[data-ui-theme="clay"] .toggle-switch.on { background: var(--clay-blue); }
+:root[data-ui-theme="clay"] .toggle-thumb {
+  background: var(--clay-purple);
+  box-shadow:
+    2px 2px 5px rgba(var(--clay-dark), 0.5),
+    -1px -1px 3px rgba(var(--clay-light), 0.6);
+}
+:root[data-ui-theme="clay"] .toggle-switch.on .toggle-thumb { background: #ffffff; }
+
+/* Kartu tingkat agresivitas & merek. */
+:root[data-ui-theme="clay"] .level-card {
+  border: 0;
+  border-radius: var(--radius-md);
+  box-shadow: var(--clay-convex);
+}
+:root[data-ui-theme="clay"] .level-card:hover { transform: translateY(-2px); box-shadow: var(--clay-convex-lg); }
+:root[data-ui-theme="clay"] .level-card.active { box-shadow: var(--clay-press); }
+:root[data-ui-theme="clay"] .brand-mark { box-shadow: var(--clay-convex); border-radius: 10px; }
+
+/* Dialog & toggle blok pengaturan sebagai gumpalan clay. */
+:root[data-ui-theme="clay"] .dialog {
+  border: 0;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--clay-convex-lg);
+  background: var(--clay-bg);
+}
+:root[data-ui-theme="clay"] .toggle,
+:root[data-ui-theme="clay"] .dict-status {
+  border: 0;
+  border-radius: var(--radius-md);
+  box-shadow: var(--clay-concave);
+  background: var(--clay-bg);
+}
+
+/* Panel legenda & empty state menyatu dengan permukaan. */
+:root[data-ui-theme="clay"] .panel-legend { border-top: 0; box-shadow: inset 0 8px 12px -10px rgba(var(--clay-dark), 0.6); }
+:root[data-ui-theme="clay"] .empty-panel-mark { box-shadow: var(--clay-convex); }
+
+/* Editor: permukaan clay "terpahat" halus, TAPI metrik teks tidak diubah —
+   garis bergelombang typo tetap duduk presisi. */
+:root[data-ui-theme="clay"] .editor-canvas {
+  background: var(--clay-bg);
+  box-shadow: inset 0 6px 12px -8px rgba(var(--clay-dark), 0.45);
+}
+:root[data-ui-theme="clay"] .editor-toolbar,
+:root[data-ui-theme="clay"] .editor-footer { background: var(--clay-bg); }
+
+/* Scrollbar clay. */
+:root[data-ui-theme="clay"] .scroll-y::-webkit-scrollbar-thumb {
+  background: var(--clay-bg);
+  box-shadow: var(--clay-convex);
+  border: 3px solid var(--clay-bg);
+}
+
+/* Judul lebih tebal, khas Nunito clay. */
+:root[data-ui-theme="clay"] .editor-title,
+:root[data-ui-theme="clay"] .panel-title,
+:root[data-ui-theme="clay"] .dialog-title,
+:root[data-ui-theme="clay"] .brand-name { font-weight: 900; letter-spacing: -0.01em; }

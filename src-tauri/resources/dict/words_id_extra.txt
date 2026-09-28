@@ -1,0 +1,325 @@
+# Kamus pelengkap Bahasa Indonesia.
+#
+# KENAPA BERKAS INI ADA
+# Kamus utama (words_id.txt) dibangun dari korpus subtitle film, yang kaya
+# bahasa lisan tapi miskin kosakata administratif, akademik, dan teknologi.
+# Pengujian menunjukkan 36% kata Indonesia formal yang lazim dipakai di
+# catatan kerja TIDAK ADA di sana. Akibatnya kata sah seperti "capaian"
+# ditandai typo dan bahkan ditarik ke kata Inggris ("captain").
+#
+# Berkas ini menambal lubang itu. Semua entri adalah kata Indonesia yang sah.
+#
+# FREKUENSI 500 dipilih dengan sengaja:
+#   * di atas REAL_WORD_FLOOR_ID (25) -> dianggap kata sah, tidak ditandai
+#   * di atas MIN_ROOT_FREQ (400)     -> boleh jadi kata dasar analisis imbuhan
+#   * tidak terlalu tinggi            -> tidak menjadi sasaran koreksi kata lain
+#
+# Format: kata<TAB>frekuensi
+
+# --- administratif & perkantoran ---------------------------------------
+capaian	500
+luaran	500
+keluaran	500
+masukan	500
+pemangku	500
+pemutakhiran	500
+penyelenggara	500
+penyelenggaraan	500
+penganggaran	500
+pertanggungjawaban	500
+penyelia	500
+penyunting	500
+penyusun	500
+penyusunan	500
+pengarsipan	500
+pemberkasan	500
+disposisi	500
+telaah	500
+penelaahan	500
+kajian	500
+naskah	500
+risalah	500
+notulensi	500
+notula	500
+pagu	500
+realisasi	500
+serapan	500
+penyerapan	500
+alokasi	500
+realokasi	500
+tenggat	500
+tenggang	500
+kelayakan	500
+kepatuhan	500
+keberlanjutan	500
+pemberdayaan	500
+pemangkasan	500
+penyederhanaan	500
+percepatan	500
+penguatan	500
+pendampingan	500
+tindaklanjut	500
+simpulan	500
+rekomendasi	500
+nomenklatur	500
+sinkronisasi	500
+konsolidasi	500
+rekonsiliasi	500
+harmonisasi	500
+akuntabilitas	500
+transparansi	500
+integritas	500
+kredibilitas	500
+kapabilitas	500
+kompetensi	500
+kualifikasi	500
+sertifikasi	500
+akreditasi	500
+verifikasi	500
+validasi	500
+klarifikasi	500
+konfirmasi	500
+koordinasi	500
+kolaborasi	500
+supervisi	500
+monitoring	500
+pemantauan	500
+pengawasan	500
+pembinaan	500
+penyuluhan	500
+sosialisasi	500
+diseminasi	500
+
+# --- teknologi & komputer -----------------------------------------------
+peladen	500
+unduh	500
+unduhan	500
+unggah	500
+unggahan	500
+gawai	500
+tetikus	500
+papan	500
+luring	500
+daring	500
+surel	500
+pranala	500
+tautan	500
+peramban	500
+perangkat	500
+jejaring	500
+narahubung	500
+swafoto	500
+salindia	500
+tembolok	500
+galat	500
+sandi	500
+kandi	500
+tapak	500
+pemrograman	500
+pengkodean	500
+penyandian	500
+antarmuka	500
+basis	500
+pangkalan	500
+komputasi	500
+digitalisasi	500
+otomatisasi	500
+integrasi	500
+migrasi	500
+pembaruan	500
+pemasangan	500
+penerapan	500
+pengembangan	500
+pengujian	500
+pemeliharaan	500
+keamanan	500
+kerentanan	500
+peretasan	500
+enkripsi	500
+dekripsi	500
+
+# --- akademik & penelitian ----------------------------------------------
+hipotesis	500
+metodologi	500
+variabel	500
+populasi	500
+sampel	500
+kuesioner	500
+responden	500
+narasumber	500
+lokakarya	500
+seminar	500
+simposium	500
+sarasehan	500
+kepustakaan	500
+rujukan	500
+sitasi	500
+kutipan	500
+lampiran	500
+pendahuluan	500
+tinjauan	500
+pembahasan	500
+penutup	500
+abstrak	500
+ringkasan	500
+sinopsis	500
+kerangka	500
+sistematika	500
+paradigma	500
+konseptual	500
+empiris	500
+kualitatif	500
+kuantitatif	500
+deskriptif	500
+komparatif	500
+korelasi	500
+signifikan	500
+
+# --- kata umum yang hilang dari korpus lisan ----------------------------
+sirat	500
+tersirat	500
+tersurat	500
+niscaya	500
+senantiasa	500
+sekiranya	500
+adapun	500
+sedangkan	500
+sehubungan	500
+berkenaan	500
+sekaitan	500
+terkait	500
+menyangkut	500
+mengenai	500
+perihal	500
+merujuk	500
+mengacu	500
+berpedoman	500
+berlandaskan	500
+berdasarkan	500
+menelaah	500
+mengkaji	500
+menganalisis	500
+mengevaluasi	500
+memantau	500
+mengawal	500
+menghimpun	500
+mengompilasi	500
+merekapitulasi	500
+mengalkulasi	500
+memutakhirkan	500
+menindaklanjuti	500
+menyelaraskan	500
+mengoptimalkan	500
+memaksimalkan	500
+meminimalkan	500
+mengefisienkan	500
+mengefektifkan	500
+berkelanjutan	500
+menyeluruh	500
+terpadu	500
+terintegrasi	500
+tersistem	500
+terstruktur	500
+sistematis	500
+mumpuni	500
+memadai	500
+kendala	500
+hambatan	500
+tantangan	500
+mitigasi	500
+antisipasi	500
+kontingensi	500
+prakiraan	500
+proyeksi	500
+estimasi	500
+asumsi	500
+skenario	500
+alternatif	500
+opsi	500
+prioritas	500
+urgensi	500
+krusial	500
+esensial	500
+substansial	500
+komprehensif	500
+holistik	500
+
+# --- geografi Indonesia -------------------------------------------------
+# Sering muncul di catatan kerja (lokasi rapat, alamat, cabang). Korpus
+# subtitle hanya memuat kota besar, jadi sisanya ditambal di sini.
+palembang	500
+tangerang	500
+depok	500
+bekasi	500
+batam	500
+denpasar	500
+balikpapan	500
+jogja	500
+surakarta	500
+banjarmasin	500
+pontianak	500
+kediri	500
+jambi	500
+ambon	500
+kupang	500
+jayapura	500
+sorong	500
+ternate	500
+gorontalo	500
+lombok	500
+sumatra	500
+sumatera	500
+sulawesi	500
+nusa	500
+maluku	500
+riau	500
+lampung	500
+banten	500
+bengkulu	500
+cilegon	500
+tasikmalaya	500
+purwokerto	500
+magelang	500
+salatiga	500
+pekalongan	500
+tegal	500
+madiun	500
+jember	500
+sidoarjo	500
+gresik	500
+mojokerto	500
+probolinggo	500
+pasuruan	500
+banyuwangi	500
+cianjur	500
+sukabumi	500
+garut	500
+karawang	500
+serpong	500
+cibubur	500
+kelapa	500
+gading	500
+kemang	500
+senayan	500
+kuningan	500
+sudirman	500
+thamrin	500
+
+# --- satuan, mata uang, ukuran ------------------------------------------
+rupiah	500
+notulen	500
+miliar	500
+triliun	500
+kuintal	500
+hektare	500
+hektar	500
+persen	500
+persentase	500
+sentimeter	500
+milimeter	500
+kilogram	500
+kilometer	500
+kilobyte	500
+megabyte	500
+gigabyte	500
+terabyte	500

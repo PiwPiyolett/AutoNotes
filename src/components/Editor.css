@@ -1,0 +1,332 @@
+.editor-toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--border);
+  min-height: 48px;
+  background: var(--bg);
+}
+
+.editor-title {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0;
+  color: var(--fg);
+  min-width: 0;
+}
+
+/* Judul yang bisa diedit — tampil seperti teks judul, tapi bidang input. */
+.editor-title-input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  font-family: inherit;
+  font-size: var(--text-lg);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--fg);
+  padding: 4px 8px;
+  margin: -4px -8px;
+  border-radius: var(--radius);
+  outline: none;
+  transition: background var(--motion-fast), box-shadow var(--motion-fast);
+  text-overflow: ellipsis;
+}
+.editor-title-input::placeholder { color: var(--fg-faint); font-weight: 500; }
+.editor-title-input:hover { background: var(--bg-hover); }
+.editor-title-input:focus {
+  background: var(--bg);
+  box-shadow: 0 0 0 2px var(--primary-soft), inset 0 0 0 1px var(--border-strong);
+}
+
+.btn.active {
+  background: var(--bg-active);
+  color: var(--fg);
+}
+
+/* --- kanvas editor (backdrop + textarea saling menumpuk presisi) ----- */
+
+.editor-canvas {
+  flex: 1;
+  position: relative;
+  background: var(--bg);
+  overflow: hidden;
+}
+
+.editor-textarea,
+.editor-backdrop {
+  position: absolute;
+  inset: 0;
+  padding: var(--space-6) 12% var(--space-8);
+  font-family: var(--font-mono);
+  font-size: 15px;
+  line-height: 1.72;
+  letter-spacing: 0;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  overflow-y: auto;
+  overflow-x: hidden;
+  tab-size: 2;
+  border: 0;
+  outline: 0;
+  margin: 0;
+}
+
+.editor-textarea {
+  z-index: 2;
+  color: var(--fg);
+  background: transparent;
+  resize: none;
+  caret-color: var(--primary);
+}
+
+.editor-textarea::placeholder { color: var(--fg-faint); }
+.editor-textarea:focus { outline: 0; }
+
+.editor-backdrop {
+  z-index: 1;
+  pointer-events: none;
+  color: transparent; /* teksnya tak terlihat; hanya <mark> yang tampil */
+  user-select: none;
+}
+
+/* --- Mode animasi mengetik --------------------------------------------
+ * Saat aktif, teks yang TERLIHAT pindah ke backdrop (supaya tiap huruf bisa
+ * dianimasikan), dan teks textarea dibuat transparan — textarea tetap
+ * menangani kursor, seleksi, dan input seperti biasa. */
+.editor-canvas.anim-active .editor-textarea {
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+.editor-canvas.anim-active .editor-backdrop {
+  color: var(--fg);
+}
+/* Di mode animasi, teks di dalam garis typo pun harus terlihat (bukan cuma
+ * garisnya), karena textarea sudah transparan. */
+.editor-canvas.anim-active .editor-backdrop mark.typo,
+.editor-canvas.anim-active .editor-backdrop mark.flash {
+  color: var(--fg);
+  -webkit-text-fill-color: var(--fg);
+}
+
+/* Span per-huruf yang baru diketik. */
+.editor-backdrop .tc {
+  display: inline-block;
+  will-change: transform, opacity, filter;
+  animation-duration: 260ms;
+  animation-timing-function: var(--ease-out);
+  animation-fill-mode: both;
+}
+.editor-backdrop .tc-pop  { animation-name: tc-pop; }
+.editor-backdrop .tc-fade { animation-name: tc-fade; animation-duration: 320ms; }
+.editor-backdrop .tc-rise { animation-name: tc-rise; }
+.editor-backdrop .tc-blur { animation-name: tc-blur; animation-duration: 300ms; }
+
+@keyframes tc-pop {
+  0%   { transform: scale(0.2); opacity: 0; }
+  60%  { transform: scale(1.18); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes tc-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes tc-rise {
+  from { transform: translateY(0.5em); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+@keyframes tc-blur {
+  from { filter: blur(6px); opacity: 0; }
+  to   { filter: blur(0); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .editor-backdrop .tc { animation: none; }
+}
+
+/* Garis bergelombang di bawah kata typo — SVG data URI supaya renyah di
+ * layar hi-DPI. */
+.editor-backdrop mark.typo {
+  background: transparent;
+  color: transparent;
+  padding: 0;
+  border-radius: 0;
+  text-decoration: underline wavy var(--typo-underline);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+}
+
+.editor-backdrop mark.typo.weak {
+  text-decoration-color: var(--typo-underline-2);
+}
+
+.editor-backdrop mark.flash {
+  background: var(--typo-applied-bg);
+  color: transparent;
+  border-radius: 3px;
+  animation: flash-fade 600ms var(--ease-out) forwards;
+}
+
+@keyframes flash-fade {
+  from { background: var(--typo-applied-bg); }
+  to   { background: transparent; }
+}
+
+.editor-footer {
+  padding: var(--space-2) var(--space-4);
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+/* --- bar navigasi halaman -------------------------------------------- */
+.pager {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+.pager .btn-icon:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+.pager-label {
+  min-width: 6.5rem;
+  text-align: center;
+  color: var(--fg-muted);
+  white-space: nowrap;
+}
+.fg-warning { color: #d68a1a; font-weight: 600; }
+.fg-danger { color: #e0483d; font-weight: 600; }
+
+/* --- keadaan kosong -------------------------------------------------- */
+
+.editor-empty {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  padding: var(--space-6);
+  background: var(--bg);
+}
+
+.editor-empty-inner {
+  text-align: center;
+  max-width: 400px;
+  color: var(--fg-muted);
+}
+.editor-empty-inner h2 {
+  color: var(--fg);
+  font-weight: 600;
+  font-size: var(--text-xl);
+  margin: 0 0 var(--space-2);
+  letter-spacing: -0.01em;
+}
+.editor-empty-inner p { margin: 0 0 var(--space-6); font-size: var(--text-sm); }
+
+.editor-empty-shortcuts {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  background: var(--bg-elevated);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.editor-empty-shortcuts > div {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+.editor-empty-shortcuts kbd {
+  display: inline-block;
+  padding: 1px 6px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  margin-right: 4px;
+  color: var(--fg);
+}
+
+/* --- menu ekspor ------------------------------------------------------ */
+.export-menu { position: relative; display: inline-flex; align-items: center; }
+.export-dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  min-width: 180px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-1);
+  z-index: 30;
+  animation: export-in 140ms var(--ease-out);
+}
+@keyframes export-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: none; }
+}
+.export-heading {
+  padding: var(--space-2) var(--space-3) var(--space-1);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--fg-subtle);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.export-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius);
+  font-size: var(--text-sm);
+  color: var(--fg);
+  transition: background var(--motion-fast);
+}
+.export-item:hover { background: var(--bg-hover); }
+.export-item:disabled { color: var(--fg-subtle); }
+.export-toast {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  z-index: 30;
+  box-shadow: var(--shadow);
+  animation: export-in 160ms var(--ease-out);
+}
+
+/* --- penanda halaman di editor ---------------------------------------
+ * Digambar sebagai pemisah bergaris, bukan deretan '=' polos, supaya batas
+ * antar-halaman langsung terbaca. Teks aslinya tetap ada (dan tetap bisa
+ * dipilih/dihapus) — hanya tampilannya yang diubah. */
+.editor-backdrop mark.pagebreak {
+  background: transparent;
+  color: var(--primary);
+  font-weight: 600;
+  opacity: 0.75;
+  border-radius: 3px;
+}
+.editor-canvas.anim-active .editor-backdrop mark.pagebreak {
+  color: var(--primary);
+  -webkit-text-fill-color: var(--primary);
+}

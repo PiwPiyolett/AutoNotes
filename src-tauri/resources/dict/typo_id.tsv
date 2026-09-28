@@ -1,0 +1,295 @@
+# Salah ketik Bahasa Indonesia — SELALU AKTIF.
+#
+# Isi berkas ini khusus kesalahan yang tidak mungkin disengaja: huruf
+# tertukar, huruf hilang, atau ejaan yang memang salah menurut KBBI.
+# Singkatan yang mungkin sengaja ditulis (yg, bgt, tdk) TIDAK di sini —
+# tempatnya di slang_id.tsv yang bisa dimatikan pengguna.
+#
+# Format: salah<TAB>benar   (baris diawali # diabaikan)
+
+# --- huruf tertukar / hilang: kata paling sering dipakai ---------------
+yagn	yang
+yagng	yang
+ynag	yang
+yanng	yang
+yagnn	yang
+dnegan	dengan
+degnan	dengan
+dengna	dengan
+denagn	dengan
+dengaan	dengan
+tidka	tidak
+tdiak	tidak
+tiak	tidak
+tidakk	tidak
+adlah	adalah
+adalh	adalah
+adaalh	adalah
+adalaah	adalah
+seprti	seperti
+sperti	seperti
+seperi	seperti
+sepeti	seperti
+kaerna	karena
+karean	karena
+kaerena	karena
+karenna	karena
+untk	untuk
+utnuk	untuk
+untuik	untuk
+untukk	untuk
+sebgai	sebagai
+sebagi	sebagai
+sebaagi	sebagai
+bahwq	bahwa
+bahwaa	bahwa
+bhwa	bahwa
+mkaan	makan
+makaan	makan
+maakn	makan
+minuum	minum
+mnium	minum
+banayk	banyak
+banyk	banyak
+banyakk	banyak
+sekarng	sekarang
+sekrang	sekarang
+sekaran	sekarang
+kemduian	kemudian
+kmeudian	kemudian
+setelh	setelah
+seteah	setelah
+sebelu	sebelum
+sebeum	sebelum
+lebi	lebih
+lbeih	lebih
+lebihh	lebih
+juag	juga
+jgua	juga
+bisaa	bisa
+bsia	bisa
+haurs	harus
+harsu	harus
+smeua	semua
+seuma	semua
+semuaa	semua
+sesuia	sesuai
+sesaui	sesuai
+melakuakn	melakukan
+melakuan	melakukan
+menggunkan	menggunakan
+mengguakan	menggunakan
+mengunakan	menggunakan
+memberikn	memberikan
+mendapatkn	mendapatkan
+diperlukn	diperlukan
+merupakn	merupakan
+kegiatn	kegiatan
+pekerjaaan	pekerjaan
+perusahaaan	perusahaan
+masalh	masalah
+masaalh	masalah
+maslah	masalah
+catatn	catatan
+caatatan	catatan
+ctatan	catatan
+rapt	rapat
+raapt	rapat
+waktnu	waktu
+wkatu	waktu
+watku	waktu
+tempaat	tempat
+temapt	tempat
+orng	orang
+oragn	orang
+oarng	orang
+tahnu	tahun
+tahnun	tahun
+bualn	bulan
+buln	bulan
+mesikpun	meskipun
+meksipun	meskipun
+walaupn	walaupun
+sehinga	sehingga
+sehingaa	sehingga
+sehinggga	sehingga
+tetpai	tetapi
+tetapii	tetapi
+namn	namun
+namuun	namun
+sagnat	sangat
+snagat	sangat
+sanagt	sangat
+mungkn	mungkin
+mungkiin	mungkin
+mungin	mungkin
+sudh	sudah
+sudaah	sudah
+sduah	sudah
+belm	belum
+beluum	belum
+blum	belum
+masi	masih
+masihh	masih
+maish	masih
+akna	akan
+akaan	akan
+tealh	telah
+telh	telah
+sasat	saat
+saaat	saat
+seteah	setelah
+memilki	memiliki
+memilkii	memiliki
+mengetahuii	mengetahui
+menegtahui	mengetahui
+berbea	berbeda
+bereda	berbeda
+peritnah	perintah
+selesia	selesai
+selesa	selesai
+seleasi	selesai
+penitng	penting
+pentng	penting
+pentiing	penting
+mudh	mudah
+mudaah	mudah
+suslit	sulit
+sultit	sulit
+cepta	cepat
+cpeat	cepat
+cepatt	cepat
+lambt	lambat
+lamabt	lambat
+brapa	berapa
+berpa	berapa
+bagimana	bagaimana
+bagaiaman	bagaimana
+bagaimanna	bagaimana
+kenpa	kenapa
+kenaap	kenapa
+menagpa	mengapa
+mengpa	mengapa
+
+# --- ejaan salah menurut KBBI ------------------------------------------
+resiko	risiko
+analisa	analisis
+aktifitas	aktivitas
+kreatifitas	kreativitas
+produktifitas	produktivitas
+sportifitas	sportivitas
+efektifitas	efektivitas
+nasehat	nasihat
+praktek	praktik
+apotik	apotek
+atlit	atlet
+propinsi	provinsi
+hakekat	hakikat
+ijin	izin
+jaman	zaman
+konkrit	konkret
+kwalitas	kualitas
+kwitansi	kuitansi
+nafas	napas
+negri	negeri
+obyek	objek
+subyek	subjek
+prosentase	persentase
+sekedar	sekadar
+silahkan	silakan
+sistim	sistem
+teoritis	teoretis
+trampil	terampil
+antri	antre
+karir	karier
+komplek	kompleks
+managemen	manajemen
+metoda	metode
+mesjid	masjid
+Pebruari	Februari
+Nopember	November
+himbau	imbau
+merubah	mengubah
+mempengaruhi	memengaruhi
+terlanjur	telanjur
+telpon	telepon
+telfon	telepon
+hutang	utang
+lembab	lembap
+kempes	kempis
+kripik	keripik
+kwartal	kuartal
+seksama	saksama
+sekedarnya	sekadarnya
+tekhnologi	teknologi
+
+# --- kata depan yang harus dipisah -------------------------------------
+disini	di sini
+disana	di sana
+disitu	di situ
+dimana	di mana
+kemana	ke mana
+kesana	ke sana
+kesini	ke sini
+kesitu	ke situ
+dirumah	di rumah
+dikantor	di kantor
+disekolah	di sekolah
+dikampus	di kampus
+dijalan	di jalan
+diatas	di atas
+dibawah	di bawah
+didalam	di dalam
+diluar	di luar
+didepan	di depan
+dibelakang	di belakang
+disamping	di samping
+diantara	di antara
+disebelah	di sebelah
+disaat	di saat
+kedalam	ke dalam
+keatas	ke atas
+kebawah	ke bawah
+kedepan	ke depan
+terimakasih	terima kasih
+kerjasama	kerja sama
+tanggungjawab	tanggung jawab
+sumberdaya	sumber daya
+orangtua	orang tua
+
+# --- tambahan dari rujukan kamus-alay (nasalsabila), dikurasi & diverifikasi ---
+# Huruf hilang/tertukar yang tidak mungkin disengaja. Formal-nya terbukti
+# ada di kamus dengan frekuensi tinggi.
+yng	yang
+akn	akan
+bsa	bisa
+dngan	dengan
+dngn	dengan
+dri	dari
+drii	dari
+hrus	harus
+sdah	sudah
+adlh	adalah
+kmi	kami
+sprti	seperti
+sprt	seperti
+hnya	hanya
+smua	semua
+sekrng	sekarang
+skrang	sekarang
+jdi	jadi
+dlam	dalam
+bkan	bukan
+bukn	bukan
+bgmna	bagaimana
+gimna	bagaimana
+bagaimna	bagaimana
+mreka	mereka
+mrka	mereka
+merka	mereka
+ingi	ingin
+tpii	tapi
+slah	salah
+sampe	sampai
+knapa	kenapa
+kmren	kemarin

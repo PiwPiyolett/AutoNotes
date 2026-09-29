@@ -1,8 +1,8 @@
 <div align="center">
 
-# 📝 AutoNotes — Catatan Anti-Typo
+# 📝 AutoNotes · Catatan Anti-Typo
 
-**Aplikasi pencatat desktop yang memperbaiki salah ketik secara otomatis — sepenuhnya offline.**
+**Aplikasi pencatat desktop yang memperbaiki salah ketik secara otomatis, sepenuhnya offline.**
 
 Koreksi typo Indonesia + Inggris dalam **< 1 ms**, jalan di setiap ketukan tombol tanpa terasa.
 
@@ -21,12 +21,12 @@ Koreksi typo Indonesia + Inggris dalam **< 1 ms**, jalan di setiap ketukan tombo
 
 ## ✨ Fitur
 
-- ⚡ **Koreksi typo < 1 ms** — cukup ringan untuk berjalan di setiap ketukan tombol.
-- 🇮🇩 **Sadar konteks (T2 bigram)** — 279 rb pasangan kata: `makam` → `makan`, `haru` → `harus`, `ino` → `ini`.
-- 📴 **100% offline** — tidak ada data yang keluar dari perangkatmu.
-- 🗂️ **Penyimpanan Markdown + indeks SQLite** — catatan tersimpan rapi & portabel.
-- 🔎 **Pencarian FTS5** — pencarian awalan yang toleran terhadap typo.
-- 🔗 **Jembatan Tauri** — 15 command Rust ⇄ React untuk performa native.
+- ⚡ **Koreksi typo < 1 ms**, cukup ringan untuk berjalan di setiap ketukan tombol.
+- 🇮🇩 **Sadar konteks (T2 bigram)**, 279 rb pasangan kata: `makam` → `makan`, `haru` → `harus`, `ino` → `ini`.
+- 📴 **100% offline**, tidak ada data yang keluar dari perangkatmu.
+- 🗂️ **Penyimpanan Markdown + indeks SQLite**, catatan tersimpan rapi & portabel.
+- 🔎 **Pencarian FTS5**, pencarian awalan yang toleran terhadap typo.
+- 🔗 **Jembatan Tauri**, 15 command Rust ⇄ React untuk performa native.
 
 ## 🛠️ Tech Stack
 
